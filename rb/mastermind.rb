@@ -24,7 +24,7 @@ class MastermindCodeGuesser
     puts 'Game over! The secret code was:'
     p code
   end
-  
+
   private
 
   attr_accessor :turn, :game_running
@@ -57,30 +57,30 @@ class MastermindCodeCreator
   attr_reader :ai, :code
   attr_accessor :game_running, :turn
 
-  def initialize()
+  def initialize
     @turn = 0
-    @ai = ArtificialIntelligence.new()
+    @ai = ArtificialIntelligence.new
     @game_running = true
   end
 
-  def make_a_guess()
+  def make_a_guess
     self.turn += 1
     p "Guessing #{ai.guess}..."
     aim = check_for_matches(code, ai.guess)
     sleep(1)
     p "There are #{aim[0]} digits correct AND at the right place and #{aim[1]} digits are correct BUT at the wrong place."
     sleep(1)
-    if aim == [4,0]
+    if aim == [4, 0]
       puts "The correct code was found in #{turn} turns!"
       self.game_running = false
       return
     end
     ai.update_solutions(aim)
-    ai.update_guess()
+    ai.update_guess
     puts ''
   end
 
-  def play()
+  def play
     puts 'Please enter a secret four digit code consisting of digits between 1 and 6.'
     secret_code = get_guess('What\'s the secret code?')
     @code = secret_code

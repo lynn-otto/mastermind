@@ -3,6 +3,7 @@
 # module CheckGuess
 module CheckGuess
   private
+
   def check_for_matches(code, guess)
     code_copy = code.map(&:clone)
     guess_copy = guess.map(&:clone)
@@ -31,11 +32,12 @@ module CheckGuess
   # This will count unexact AND exact matches!
   def check_for_unexact_matches(code, guess)
     unexact_matches = 0
-    guess.each_with_index do |number_guess, index_guess|
+    guess.each_with_index do |number_guess, _index_guess|
       next if number_guess.zero?
 
       code.each_with_index do |number_code, index_code|
         next unless number_code == number_guess
+
         code[index_code] = 0
         unexact_matches += 1
         break
