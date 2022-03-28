@@ -2,6 +2,7 @@
 
 # module CheckGuess
 module CheckGuess
+  private
   def check_for_matches(code, guess)
     code_copy = code.map(&:clone)
     guess_copy = guess.map(&:clone)
@@ -35,9 +36,9 @@ module CheckGuess
 
       code.each_with_index do |number_code, index_code|
         next unless number_code == number_guess
-
         code[index_code] = 0
         unexact_matches += 1
+        break
       end
     end
     unexact_matches

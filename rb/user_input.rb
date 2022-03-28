@@ -2,11 +2,12 @@
 
 # module UserInput
 module UserInput
-  def get_guess
+  private
+  def get_guess(ask_line = 'What\'s your next guess?' )
     correct_guess = false
     guess_array = []
     until correct_guess
-      guess = ask_for_guess()
+      guess = ask_for_guess(ask_line)
       correct_guess = four_digit_code?(guess)
       guess_array = transform_guess_into_integer_array(guess)
       correct_guess = code_in_range?(guess_array)
@@ -31,8 +32,8 @@ module UserInput
     true
   end
 
-  def ask_for_guess
-    puts "What's your next guess?"
+  def ask_for_guess(ask_line)
+    puts ask_line
     guess = gets.chomp()
     guess
   end
